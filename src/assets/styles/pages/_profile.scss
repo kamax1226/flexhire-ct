@@ -1,0 +1,190 @@
+//
+// Profile
+//
+
+.home-container {
+    margin-top: 50px;
+}
+
+.profile-loading-container {
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    min-height: 50vh;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.profile-loading-container h3 {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 500;
+    color: #333333;
+}
+
+.profile-loading-container p {
+    margin: 10px 0;
+    font-weight: 500;
+    color: #333333;
+}
+
+.profile-container {
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    min-height: 80vh;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.profile-top-block {
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    flex-wrap: wrap;
+    padding-top: 40px;
+}
+
+.verify-tag-block {
+    text-align: left;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    box-shadow: 0px 0px 20px -4px #333;
+}
+
+.verified-badge {
+    color: #14a800;
+    font-size: 14px;
+    font-weight: 500;
+    align-items: center
+}
+
+.verified-badge svg {
+    font-size: 18px;
+}
+
+.unverified-badge {
+    color: #666666;
+    font-size: 14px;
+    font-weight: 500;
+    align-items: center;
+}
+
+.unverified-badge svg {
+    font-size: 18px;
+}
+
+.time-zone-text {
+    font-size: 14px;
+    color: #666666;
+    font-weight: 500;
+    margin-top: 2px;
+    margin-left: 17px;
+}
+
+.user-name {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #333333;
+}
+
+.user-experience {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.profile-introduction-text {
+    font-size: 16px;
+    color: #666666;
+}
+
+.profile-container hr {
+    border-top: none;
+    border-bottom: 1px solid #cccccc;
+    margin: 0;
+}
+
+.skills-content {
+    padding: 15px 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.video-answers-content {
+    padding: 30px;
+}
+
+.video-answers-content .MuiGrid-item {
+    padding: 10px;
+}
+
+.work-education-content {
+    padding: 30px;
+}
+
+.tabs-container {
+    margin: 0 15%;
+}
+
+.timeline-div {
+    display: flex;
+    border-left: 1px solid #999999;
+    margin: 0 20px;
+    padding-bottom: 10px;
+}
+
+.timeline-icon {
+    margin-left: -12px;
+    margin-right: 15px;
+    background-color: #ffffff;
+    height: fit-content;
+}
+
+.timeline-title {
+    margin: 0;
+    font-size: 18px;
+    color: #333333;
+}
+
+.timeline-date {
+    font-size: 14px;
+    color: #666666;
+    margin: 5px 0;
+}
+
+.timeline-description {
+    font-size: 16px;
+    color: #111111;
+    margin-top: 0;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}

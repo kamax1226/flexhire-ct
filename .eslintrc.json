@@ -31,7 +31,8 @@
                 "tsx": "never"
             }
         ],
-        "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ]
+        "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ],
+        "no-param-reassign": 0
     },
     "settings": {
         "import/resolver": {
