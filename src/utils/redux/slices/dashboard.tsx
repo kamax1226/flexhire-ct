@@ -38,6 +38,32 @@ const slice = createSlice({
       state.currentUser = action.payload.currentUser;
       state.contracts = action.payload.contracts;
     },
+    clearData(state) {
+      state.currentUser = {
+        id: '',
+        firstName: '',
+        lastName: '',
+        avatarUrl: '',
+        profile: {
+          id: '',
+          freelancerRate: 0,
+          annualCompensation: 0,
+          availabilityType: [],
+          freelancerType: {
+            id: '',
+            name: '',
+          },
+          totalExperience: 0,
+          textIntroduction: '',
+        },
+        userSkills: [],
+        timezone: '',
+      };
+      state.contracts = {
+        nodes: [],
+        totalCount: 0,
+      };
+    },
   },
 });
 
@@ -54,6 +80,14 @@ export function setGraphqlData(gData: IGraphql) {
       contracts: gData.contracts,
     }));
 
+    return true;
+  };
+}
+
+export function clearGraphqlData() {
+  // eslint-disable-next-line
+  return async (dispatch: AppDispatch) => {
+    dispatch(slice.actions.clearData());
     return true;
   };
 }

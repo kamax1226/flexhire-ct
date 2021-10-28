@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { login, logout } from 'utils/redux/slices/auth';
+import { clearGraphqlData } from 'utils/redux/slices/dashboard';
 import { IRootState } from 'utils/redux/store';
 import { ILogin } from 'utils/types';
 
@@ -24,7 +25,10 @@ const useAuth = () => {
       }),
     ),
 
-    logout: () => dispatch(logout()),
+    logout: () => {
+      dispatch(logout());
+      dispatch(clearGraphqlData());
+    },
   };
 };
 

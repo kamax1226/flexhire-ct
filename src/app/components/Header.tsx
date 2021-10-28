@@ -21,6 +21,7 @@ const Header: React.FC = () => {
   }, [setMenu]);
 
   const handleRoute = useCallback((path: string) => {
+    setMenu(null);
     history.push(path);
   }, [history]);
 

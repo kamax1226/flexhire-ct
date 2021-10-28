@@ -18,9 +18,16 @@ const authPersistConfig = {
   whitelist: ['isAuthenticated', 'apiKey'],
 };
 
+const dashboardPersistConfig = {
+  key: 'dashboard',
+  storage,
+  keyPrefix: 'redux-',
+  whitelist: ['currentUser', 'contracts'],
+};
+
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
-  dashboard: dashboardReducer,
+  dashboard: persistReducer(dashboardPersistConfig, dashboardReducer),
 });
 
 export { rootPersistConfig, rootReducer };

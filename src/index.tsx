@@ -11,15 +11,13 @@ import reportWebVitals from './reportWebVitals';
 import 'assets/styles/style.scss';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <RelayEnvironmentProvider environment={environment}>
-      <Provider store={store}>
-        <PersistGate loading={<Loading />} persistor={persistor}>
-          <App />
-        </PersistGate>
-      </Provider>
-    </RelayEnvironmentProvider>
-  </React.StrictMode>,
+  <RelayEnvironmentProvider environment={environment}>
+    <Provider store={store}>
+      <PersistGate loading={<Loading />} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
+  </RelayEnvironmentProvider>,
   document.getElementById('root'),
 );
 
