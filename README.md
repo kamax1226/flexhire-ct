@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+# Flexhire Code Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Author
 
-## Available Scripts
+### Name: Andrei Strukau
+### Email: karlikboroda@gmail.com
 
-In the project directory, you can run:
+## Live Demo
+[Flexhire Code Test](https://se-andrei-frontend.herokuapp.com/)
 
-### `yarn start`
+## Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Created by using [Create React App](https://github.com/facebook/create-react-app) (CRA) _template_ with following libraries including:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  - React v17.0.2
+  - Type Checker - TypeScript
+  - API client - Relay
+  - MUI
+  - State management - Redux Thunk & Toolkit
+  - Cypress
+  - Format & Lint - ESLint & Prettier
 
-### `yarn test`
+Custom Templates, format, and ESlint configurations.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup Environments
+  - Node 16.2.0
+  - Yarn 1.22.17
 
-### `yarn build`
+  ```
+  npm install
+  ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  or
+  ```
+  yarn install
+  ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Run Scripts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Inside the project directory run:
 
-### `yarn eject`
+- `yarn start` - runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- `yarn test` - launches the test runner in the interactive watch mode.
+- `yarn build` - builds the app for production to the `build` folder.
+- `yarn build:serve` - run a local static build using the production build using serve library. Install `yarn install -g serve`.
+- `yarn eject` - exposes content of `react-script` package
+- `yarn lint` - lints project files according to Airbnb — as part of their style guide 👍 — it provides an ESLint configuration that anyone can use and it is the standard.
+- `yarn fix` - fix lint errors.
+- `yarn relay` - generate graphql queries.
+- `yarn cypress:open test` - run cypress test
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+CRA template only support `scripts` and `dependencies` inside generated `package.json`. No `devDependencies` is possible on CRA template for now.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## State Management
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The code is set for [Redux Toolkit](https://medium.com/react-courses/instant-learn-react-redux-toolkit-with-a-simple-minimalistic-example-3c63c296ed65) you pick.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## API Client
 
-## Learn More
+[Relay](https://relay.dev/) keeps management of data-fetching easy, whether your app has tens, hundreds, or thousands of components.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Eslint configurations
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Lint is set according to Airbnb style guide — as part of their style guide.
+
+## Format configurations
+
+[Prettier](https://prettier.io/) is set using my opinionated settings, feel free to [tweak prettier rules](https://prettier.io/docs/en/configuration.html) inside config file `.prettierrc` to match your code style.
