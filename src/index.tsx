@@ -1,12 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from 'app/App';
+import { RelayEnvironmentProvider } from 'react-relay';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { Provider } from 'react-redux';
+import environment from 'utils/graphql/environment';
+import { store, persistor } from 'utils/redux/store';
+import Loading from 'app/components/Loading';
 import reportWebVitals from './reportWebVitals';
 import 'assets/styles/style.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RelayEnvironmentProvider environment={environment}>
+      <Provider store={store}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </RelayEnvironmentProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Avatar, Menu, MenuItem } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
-import '../assests/styles/header.css';
+import { useHistory, Link } from 'react-router-dom';
 
 export default function Header() {
   const history = useHistory();
@@ -23,13 +22,15 @@ export default function Header() {
   return (
     <div className="header-container">
       <div className="d-flex align-items-center">
-        <div className="logo" onClick={() => handleRoute('/')}>
-          <h2>Flexhire</h2>
+        <div className="logo">
+          <Link to="/">
+            <h2>Flexhire</h2>
+          </Link>
         </div>
         <div className="header-link-items">
-          <p onClick={() => handleRoute('/')}>Dashboard</p>
+          {/* <p onClick={() => handleRoute('/')}>Dashboard</p>
           <p onClick={() => handleRoute('/jobs')}>Jobs</p>
-          <p onClick={() => handleRoute('/profile')}>Profile</p>
+          <p onClick={() => handleRoute('/profile')}>Profile</p> */}
         </div>
       </div>
       <div>

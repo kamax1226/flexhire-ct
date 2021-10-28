@@ -15,3 +15,4 @@ const persistor = persistStore(store);
 export { store, persistor };
 
 export type IRootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = typeof store.dispatch;

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Login from 'app/pages/Login';
+import Login from 'app/pages/auth/Login';
+import Loading from 'app/components/Loading';
 
 export default function PublicRoutes() {
   return (
-    <Switch>
-      <Route path="/auth" component={Login} />
-      <Redirect to="/auth" />
-    </Switch>
+    <Suspense fallback={<Loading />}>
+      <Switch>
+        <Route path="/auth" component={Login} />
+        <Redirect to="/auth" />
+      </Switch>
+    </Suspense>
   );
 }

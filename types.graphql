@@ -1,0 +1,260 @@
+Query currentUser: User
+
+
+type ContractConnection {
+  edges: [ContractEdge]
+  nodes: [Contract]
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+type User {
+  additionalInvoiceText: String
+  answers(jobId: Int): [Video!]
+  apiAccess: Boolean
+  apiKeys: [ApiKey!]
+  appliedAt: DateTime
+  avatarUrl: String
+  backgroundCheckCompleted: Boolean
+  blockPlatformAccessDueToUnpaidInvoicesDate: Boolean
+  calendlyUrl: String
+  canMakeOffer: Boolean
+  canNotify: Boolean
+  canRequestInterview: Boolean
+  canSetupPayoutMethod: Boolean
+  clientContracts(
+    after: String
+    before: String
+    first: Int
+    last: Int
+    stage: String
+  ): ContractConnection
+  configuration: Configuration
+  confirmedEmail: Boolean
+  contractSigned: Boolean
+  contracts(
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): ContractConnection
+  createdAt: DateTime
+  directChatThreadId: Int
+  displayDialogAfterSavingDraftTimesheet: Boolean
+  email: String
+  featureStepCompleted: Boolean!
+  featured: Boolean
+  firm: Firm
+  firmRole: FirmRole
+  firstName: String
+  freelancerContracts(
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): ContractConnection
+  fullAddress: String
+  hasActivePayoutMethod: Boolean
+  hasInvitationContracts: Boolean
+  hasInvoiceAccess: Boolean
+  hasTeam: Boolean
+  hidden: Boolean
+  hireSourcedByClientMargin: Float @deprecated(reason: "use firm.billingPlan values")
+  hireSourcedByFlexhireMargin: Float @deprecated(reason: "use firm.billingPlan values")
+  id: ID!
+  integrationName: String
+  inviteMargin: Float @deprecated(reason: "use firm.billingPlan values")
+  invitedToJob(jobId: Int, jobSlug: String): Boolean
+  invoiceManager: User
+  isFlexhireTeam: Boolean
+  jobApplicationsCount: Int
+  jobIncompatibilityReasons(jobId: Int, jobSlug: String): [String!]
+  lastName: String
+  lastSeenAt: DateTime
+  location: String @deprecated(reason: "use country, fullAddress, city, region instead")
+  managerContract: Contract
+  managerInvitationMessage: String
+  managesInvoicesFor: [Int!]
+  minMarginUsd: Float @deprecated(reason: "use country, fullAddress, city, region instead")
+  name: String
+  passwordSetupRequired: Boolean
+  payoutMethod: PayoutMethod
+  payoutMethods: [PayoutMethod!]
+  phone: String
+  profile: Profile
+  purchaseOrderNumber: String
+  ratingCountHigh: Int
+  ratingCountLow: Int
+  ratingCountMedium: Int
+  rawId: Int
+  realUser: User
+  references: [Reference!]
+  remoteDebugCode: String
+  resumeUrl: String
+  roles: [UserRole!]!
+  self: Boolean
+  sendTimesheetReminders: Boolean
+  skipped: Boolean
+  status: String
+  teamInvitationMessage: String
+  termsOfServiceApproved: Boolean
+  timezone: String
+  timezoneName: String
+  timezoneOffset: Int
+  unconfirmedEmail: String
+  updatedAt: DateTime
+  userSkills: [UserSkill!]
+  verified: Boolean
+  video: Video
+  webhooks: [Webhook!]
+}
+
+type ContractEdge {
+  cursor: String!
+  node: Contract
+}
+
+type Contract {
+  allowTextualAnswers: Boolean
+  annualCompensation: Money
+  annualCompensationCents: Int
+  answers: [Video!]
+  applicantSource: String
+  availabilityType: [String!]
+  backgroundCheckStatus: String
+  bookmarked: Boolean
+  calendlyUrl: String
+  checkrCandidateId: String
+  city: String
+  client: User
+  clientAgreesTerms: Boolean
+  clientRate: Money
+  clientRejectionComments: String
+  clientRejectionMessage: String
+  clientRejectionReason: String
+  contractFeedbacks: [ContractFeedback!]
+  contractIntroductionSentAt: DateTime
+  contractRequests: [ContractRequest!]
+  country: String
+  createdAt: DateTime!
+  currency: String!
+  dailyFee: Money
+  defaultDistance: Float
+  deletable: Boolean
+  description: String
+  disableMinUsdMarginLimit: Boolean
+  discountId: Int
+  enableTimesheets: Boolean
+  endDate: Date
+  estimatedNextSalaryPayoutDate: DateTime
+  firmRole: String
+  freelancer: User
+  freelancerAgreesTerms: Boolean
+  freelancerContactEmail: String
+  freelancerEmail: String
+  freelancerFeedback: String
+  freelancerFirstName: String
+  freelancerLastName: String
+  freelancerMessage: String
+  freelancerPhone: String
+  freelancerRate: Money
+  freelancerTimezoneName: String
+  fullAddress: String
+  hidden: Boolean
+  hiringManager: User
+  id: ID!
+  inheritor: User
+  interviewAcceptedAt: DateTime
+  interviewDate: DateTime
+  interviewDate1: DateTime
+  interviewDate2: DateTime
+  interviewDate3: DateTime
+  interviewDate4: DateTime
+  interviewNote: String
+  interviewSchedulingMethod: String
+  interviewTimezone: String
+  interviewerEmail: String
+  interviewerName: String
+  interviewerRole: String
+  invitationType: String
+  invitedBy: User
+  invitedToApplyAt: DateTime
+  job: Job
+  jobApplicationNotifiedToAdminsAt: DateTime
+  jobApplicationReminderSentAt: DateTime
+  jobApplicationSentAt: DateTime
+  jobApplicationSentByFreelancerAt: DateTime
+  jobOpportunitySentAt: DateTime
+  jobTimezone: String
+  lastInteractionAt: DateTime
+  latitude: Float
+  locationType: String
+  longitude: Float
+  managedOffPlatform: Boolean
+  margin: Float
+  minClientRate: Float
+  minDateToInvoiceNextSalary: DateTime
+  minMarginUsd: Float
+  negativeFeedbackCount: Int
+  nextSalaryInvoiceDate: DateTime
+  notifyChanges: Boolean
+  offerNote: String
+  paymentMode: String
+  paymentsEnabled: Boolean
+  positionTypes: [String!]
+  positiveFeedbackCount: Int
+  postInterviewRemindersSentAt: DateTime
+  previousStatus: String
+  profileJobIncompatibilityReasons: [String!]
+  projectLength: String
+  projectLengthInMonths: Int
+  projectSubmission: ProjectSubmission
+  purchaseOrderNumber: String
+  rateMode: String
+  rawId: Int
+  ref: String
+  referer: User
+  refererUrl: String
+  referralOpportunitySentAt: DateTime
+  region: String
+  requestBackground: Boolean
+  requestsStatus: ContractRequestsStatus
+  requireTimesheetApprovalForPayments: Boolean
+  signableDocuments: [SignableDocument!]
+  sourcedByClient: Boolean
+  startDate: Date
+  status: ContractStatus!
+  stripePlanId: String
+  stripeProductId: String
+  stripeSubscriptionId: String
+  tags: [Tag!]
+  textualAnswers: [Answer!]
+  token: String
+  updatedAt: DateTime!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+contracts {
+  edges {
+    cursor
+    node {
+      allowTextualAnswers
+    }
+  }
+  nodes {
+    allowTextualAnswers
+  }
+  pageInfo {
+    endCursor
+    hasNextPage
+    hasPreviousPage
+    startCursor
+  }
+  totalCount
+}

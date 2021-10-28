@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import jwtDecode from 'jwt-decode';
-import { IRegister, ILogin, IDecoded } from 'utils/interfaces';
+import { ILogin } from 'utils/types';
+import { AppDispatch } from 'utils/redux/store';
 // import getApolloClient from '../../graphql/apolloClient';
 // import { LoginMutation, SignUpMutation } from '../../graphql/mutations/mutation';
 // import { MeQuery } from '../../graphql/queries/query';
@@ -8,7 +9,7 @@ import { IRegister, ILogin, IDecoded } from 'utils/interfaces';
 const initialState = {
   isLoading: false,
   isAuthenticated: false,
-  user: {},
+  apiKey: '',
 };
 
 const slice = createSlice({
@@ -24,19 +25,19 @@ const slice = createSlice({
     getInitialize(state, action) {
       state.isLoading = false;
       state.isAuthenticated = action.payload.isAuthenticated;
-      state.user = action.payload.user;
+      state.apiKey = '';
     },
 
     // AUTH SUCCESS
     authSuccess(state, action) {
       state.isAuthenticated = true;
-      state.user = action.payload.user;
+      state.apiKey = action.payload.apiKey;
     },
 
     // LOGOUT
     logoutSuccess(state) {
       state.isAuthenticated = false;
-      state.user = false;
+      state.apiKey = '';
     },
   },
 });
@@ -57,16 +58,16 @@ const isValidToken = (jwtToken: string) => {
   return false;
 };
 
-const setSession = (jwtToken: string) => {
-  if (jwtToken) {
-    localStorage.setItem('jwtToken', jwtToken);
+const setSession = (apiKey: string) => {
+  if (apiKey && apiKey.length > 0) {
+    localStorage.setItem('apiKey', apiKey);
   } else {
-    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('apiKey');
   }
 };
 
-export function login(loginArgs: ILogin) {
-  return async (dispatch: any) => {
+export function login(params: ILogin) {
+  return async (dispatch: AppDispatch) => {
     // try {
     //   const result = await getApolloClient().mutate({
     //     mutation: LoginMutation,
@@ -76,11 +77,11 @@ export function login(loginArgs: ILogin) {
     //     },
     //   });
 
-    //   const jwtToken = JSON.parse(result.data.login).token;
-    //   setSession(jwtToken);
+    setSession(params.apiKey);
 
-    //   const user: IDecoded = jwtDecode(jwtToken);
-    //   dispatch(slice.actions.authSuccess({ user }));
+    dispatch(slice.actions.authSuccess({ apiKey: params.apiKey }));
+
+    return true;
 
     //   return true;
     // } catch (error) {
@@ -129,7 +130,7 @@ export function logout() {
 }
 
 export function getInitialize() {
-  return async (dispatch: any) => {
+  return async (dispatch: AppDispatch) => {
     dispatch(slice.actions.startLoading());
 
     try {

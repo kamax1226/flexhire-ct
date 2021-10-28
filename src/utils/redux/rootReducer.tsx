@@ -16,7 +16,7 @@ const authPersistConfig = {
   key: 'authJwt',
   storage,
   keyPrefix: 'redux-',
-  whitelist: ['isAuthenticated'],
+  whitelist: ['isAuthenticated', 'apiKey'],
 };
 
 const rootReducer = combineReducers({

@@ -6,49 +6,50 @@ import {
   VerifiedUser, EventNote, Event, AssignmentTurnedIn,
 } from '@material-ui/icons';
 import { fetchProfile, fetchSuggestQuestions, fetchChatContracts } from 'utils/graphql/fetchGraphql';
-import CompensationCard from '../components/CompensationCard';
+import CompensationCard from 'app/components/CompensationCard';
+
+import { useLazyLoadQuery, useFragment } from 'react-relay';
+import { graphql } from 'babel-plugin-relay/macro';
+
+type propTypes = {
+  currentUser: any,
+}
+
+const User: React.FC<propTypes> = (props: propTypes) => {
+  const { currentUser } = props;
+
+  return (
+    <div className="user-avatar-view">
+      <Avatar src={currentUser.avatarUrl} className="avatar-img" />
+      <div>
+        <h3 className="user-name">
+          Hi
+          {currentUser.firstName}
+          , welcome to Flexhire
+        </h3>
+        <div className="d-flex dash-verified-badge">
+          <VerifiedUser />
+          {' '}
+          Verified
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function Dashboard() {
-  const [userData, setUserData] = useState<any>();
+  const [currentUser, setCurrentUser] = useState<any>({});
   const [questions, setQuestions] = useState<any>();
   const [chatContracts, setChatContracts] = useState<any>();
 
-  const verifyBadge = useMemo(() => ((userData && userData.verified) ? (
-    <div className="d-flex dash-verified-badge">
-      <VerifiedUser />
-      {' '}
-      Verified
-    </div>
-  ) : (
-    <div className="d-flex dash-unverified-badge">
-      <VerifiedUser />
-      {' '}
-      Unverified
-    </div>
-  )), [userData]);
-
-  const userMemo = useMemo(() => userData && (
-  <div className="user-avatar-view">
-    <Avatar src={userData.avatar_url} className="avatar-img" />
-    <div>
-      <h3 className="user-name">
-        Hi
-        {userData.first_name}
-        , welcome to Flexhire
-      </h3>
-      {verifyBadge}
-    </div>
-  </div>
-  ), [userData, verifyBadge]);
-
-  const compensationMemo = useMemo(() => userData && (
-  <CompensationCard
-    hourly={userData.freelancer_rate}
-    annual={userData.annual_compensation}
-    availability={userData.profile.availability}
-    type={userData.profile.availability_type[0]}
-  />
-  ), [userData]);
+  // const compensationMemo = useMemo(() => currentUser && (
+  // <CompensationCard
+  //   hourly={currentUser.freelancer_rate}
+  //   annual={currentUser.annual_compensation}
+  //   availability={currentUser.profile.availability}
+  //   type={currentUser.profile.availability_type[0]}
+  // />
+  // ), [currentUser]);
 
   const suggestQuestionsMemo = useMemo(() => questions && (
   <Card className="suggest-questions-card">
@@ -121,7 +122,7 @@ export default function Dashboard() {
   </Card>
   ), [chatContracts]);
 
-  const noJobOfferMemo = useMemo(() => userData && (
+  const noJobOfferMemo = useMemo(() => currentUser && (
   <Card className="no-offer-card">
     <div className="no-offer-title">
       <AssignmentTurnedIn />
@@ -133,22 +134,56 @@ export default function Dashboard() {
       {/* When a client is interested in working with you, you'll see job offers here. */}
     </p>
   </Card>
-  ), [userData]);
+  ), [currentUser]);
 
-  useEffect((): any => {
-    let isSubscribed = true;
-    fetchProfile().then((response) => {
-      if (isSubscribed) setUserData(response);
-    });
-    fetchSuggestQuestions().then((response) => {
-      if (isSubscribed) setQuestions(response);
-    });
-    fetchChatContracts().then((response) => {
-      if (isSubscribed) setChatContracts(response);
-    });
-    // return () => (isSubscribed = false);
-    isSubscribed = false;
-  }, []);
+  // const dashboardData = useFragment<any>(
+  //   graphql`
+  //     fragment
+  //   `
+  // );
+
+  const dashboardData: any = useLazyLoadQuery(
+    graphql`
+      query dashboardQuery {
+        currentUser {
+          firstName
+          lastName
+          email
+          unconfirmedEmail
+          phone
+          avatarUrl
+          roles
+          teamInvitationMessage
+          sendTimesheetReminders
+          profile {
+            visibility
+            id
+          }
+          id
+        }
+      }
+    `, {
+
+    },
+  );
+
+  console.log('dashboardData', dashboardData.currentUser);
+  // setCurrentUser(dashboardData.currentUser);
+
+  // useEffect((): any => {
+  //   let isSubscribed = true;
+  //   fetchProfile().then((response) => {
+  //     if (isSubscribed) setUserData(response);
+  //   });
+  //   fetchSuggestQuestions().then((response) => {
+  //     if (isSubscribed) setQuestions(response);
+  //   });
+  //   fetchChatContracts().then((response) => {
+  //     if (isSubscribed) setChatContracts(response);
+  //   });
+  //   // return () => (isSubscribed = false);
+  //   isSubscribed = false;
+  // }, []);
 
   return (
     <div>
@@ -156,15 +191,16 @@ export default function Dashboard() {
         <Grid item sm={2} xs={1} />
         <Grid item sm={8} xs={10}>
           <div className="dashboard-container">
-            {userMemo}
+            {/* {userMemo} */}
+            <User currentUser={dashboardData.currentUser} />
             <Grid container>
               <Grid item sm={6} xs={12}>
-                {compensationMemo}
-                {suggestQuestionsMemo}
+                {/* {compensationMemo} */}
+                {/* {suggestQuestionsMemo} */}
               </Grid>
               <Grid item sm={6} xs={12}>
-                {chatContractsMemo}
-                {noJobOfferMemo}
+                {/* {chatContractsMemo} */}
+                {/* {noJobOfferMemo} */}
               </Grid>
             </Grid>
           </div>

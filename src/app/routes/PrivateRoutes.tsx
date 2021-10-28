@@ -5,7 +5,7 @@ import Loading from 'app/components/Loading';
 
 export default function PrivateRoutes() {
   const DashboardWrapper = lazy(
-    () => import('app/pages/Dashboard'),
+    () => import('app/pages/dashboard'),
   );
 
   return (
