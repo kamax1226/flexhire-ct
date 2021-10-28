@@ -31,15 +31,15 @@ const Header: React.FC = () => {
   return (
     <div className="header-container">
       <div className="d-flex align-items-center">
-        <div className="logo">
+        <div>
           <Link to="/">
             <img className="logo" src={logoUrl} alt="Logo" />
           </Link>
         </div>
         <div className="header-link-items">
-          <Link to="/">Dashboard</Link>
-          <Link to="/jobs">Jobs</Link>
-          <Link to="/profile">Profile</Link>
+          <Link to="/" className="link-dashboard">Dashboard</Link>
+          <Link to="/jobs" className="link-jobs">Jobs</Link>
+          <Link to="/profile" className="link-profile">Profile</Link>
         </div>
       </div>
       <div>

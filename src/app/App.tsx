@@ -16,12 +16,9 @@ const history = createBrowserHistory();
 
 const App: React.FC = () => {
   const isAuthenticated = useSelector<IRootState>(
-    // ({ auth }) => auth.accessToken,
     ({ auth }) => auth.isAuthenticated,
     shallowEqual,
   );
-  // console.log('isAuthenticated', isAuthenticated);
-  // const isAuthenticated = true;
 
   return (
     <Router history={history}>
