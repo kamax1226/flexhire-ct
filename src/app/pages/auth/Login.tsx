@@ -17,8 +17,7 @@ const Login: React.FC = () => {
 
   const handleLogin = () => {
     if (key.length > 0) {
-      const result = login({ apiKey: key });
-      console.log(result);
+      login({ apiKey: key });
       toast.success('API KEY is valid!');
     } else {
       toast.error('Fill out all input fields!');

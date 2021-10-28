@@ -60,6 +60,7 @@ const setSession = (apiKey: string) => {
 };
 
 export function login(params: ILogin) {
+  // eslint-disable-next-line
   return async (dispatch: AppDispatch) => {
     setSession(params.apiKey);
 
@@ -70,6 +71,7 @@ export function login(params: ILogin) {
 }
 
 export function logout() {
+  // eslint-disable-next-line
   return async (dispatch: AppDispatch) => {
     setSession('');
 
@@ -79,6 +81,7 @@ export function logout() {
 }
 
 export function getInitialize() {
+  // eslint-disable-next-line
   return async (dispatch: AppDispatch) => {
     dispatch(slice.actions.startLoading());
 

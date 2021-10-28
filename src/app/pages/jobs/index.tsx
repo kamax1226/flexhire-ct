@@ -1,13 +1,16 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import JobCard from 'app/components/JobCard';
+import useGraphql from 'app/hooks/useGraphql';
+import { IContracts, INode } from 'utils/types';
 
-import { useLazyLoadQuery } from 'react-relay';
-import { graphql } from 'babel-plugin-relay/macro';
+type propTypes = {
+  loading: boolean;
+  contracts: IContracts;
+}
 
-const JobCards: React.FC<any> = (props) => {
-  const { loading, jobs } = props;
-  console.log('jobs', jobs);
+const JobCards: React.FC<propTypes> = (props: propTypes) => {
+  const { loading, contracts } = props;
 
   return (
     <>
@@ -19,71 +22,24 @@ const JobCards: React.FC<any> = (props) => {
           </div>
         </div>
       )
-        : jobs.map((job: any) => (
+        : contracts.nodes.map((node: INode) => (
           <JobCard
             // eslint-disable-next-line
-            key={job.job.id}
-            id={job.job.id}
-            title={job.job.title}
-            content={job.job.description}
-            company={job.client.firm.name}
-            hiringManager={job.client.firstName}
+            key={node.job.id}
+            id={node.job.id}
+            title={node.job.title}
+            content={node.job.description}
+            company={node.client.firm.name}
+            hiringManager={node.client.firstName}
           />
         ))}
     </>
   );
 };
 
-export default function Home() {
-  const [jobs, setJobs] = useState<any>();
-  const [loading, setLoading] = useState<boolean>(true);
-
-  // useEffect((): any => {
-  //   let isSubscribed = true;
-
-  //   fetchJobs().then((response) => {
-  //     if (isSubscribed) setLoading(false);
-  //     if (isSubscribed) setJobs(response);
-  //   });
-  //   // return () => (isSubscribed = false);
-  //   isSubscribed = false;
-  // }, [setJobs, setLoading]);
-
-  const jobsData: any = useLazyLoadQuery(
-    graphql`
-      query jobsQuery {
-        contracts {
-          nodes {
-            client {
-              id
-              firstName
-              firm {
-                name
-              }
-            }
-            job {
-              id
-              title
-              description
-              questions {
-                title
-              }
-            }
-          }
-          totalCount
-        }
-      }
-    `, {
-
-    },
-  );
-
-  console.log('jobsData', jobsData.contracts);
-  // setLoading(false);
-
-  useEffect(() => {
-    // dispatch()
-  }, [jobsData]);
+// eslint-disable-next-line
+const Jobs: React.FC = () => {
+  const { contracts } = useGraphql();
 
   return (
     <div className="home-container">
@@ -93,11 +49,13 @@ export default function Home() {
           <div className="jobs-container">
             <h3 className="jobs-title">Jobs</h3>
             <hr />
-            <JobCards loading={false} jobs={jobsData.contracts.nodes} />
+            <JobCards loading={false} contracts={contracts} />
           </div>
         </Grid>
         <Grid item sm={2} xs={1} />
       </Grid>
     </div>
   );
-}
+};
+
+export default Jobs;

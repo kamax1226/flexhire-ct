@@ -1,24 +1,23 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Card } from '@material-ui/core';
 import { Error, Comment } from '@material-ui/icons';
+import useGraphql from 'app/hooks/useGraphql';
+import { INode, IQuestion } from 'utils/types';
 import { useLocation } from 'react-router-dom';
 
 const QuestionsCard: React.FC = () => {
   const location = useLocation();
-  const [jobs, setJobs] = useState<any>();
-  const [id, setId] = useState<number>();
+  const { contracts } = useGraphql();
+  const [id, setId] = useState(0);
 
-  // useEffect(() => {
-  //   fetchJobs().then((response) => {
-  //     setJobs(response);
-  //   });
-  //   const tId: any = new URLSearchParams(location.search).get('id');
-  //   setId(parseInt(tId, 10));
-  // }, [setJobs, setId, location]);
+  useEffect(() => {
+    const tId: string = new URLSearchParams(location.search).get('id') || '';
+    setId(parseInt(tId, 10));
+  }, [setId, location]);
 
-  const questionsMemo = useMemo(() => jobs && jobs.map((job: any) => {
-    if (job.id === id) {
-      return job.job.questions && job.job.questions.map((question: any, idx: number) => (
+  const questionsMemo = useMemo(() => contracts.nodes && contracts.nodes.map(
+    (node: INode) => node.job.questions && node.job.questions.map(
+      (question: IQuestion, idx: number) => (
         // eslint-disable-next-line
         <div key={idx}>
           <hr />
@@ -27,10 +26,9 @@ const QuestionsCard: React.FC = () => {
             <p>{question.title}</p>
           </div>
         </div>
-      ));
-    }
-    return true;
-  }), [jobs, id]);
+      ),
+    ),
+  ), [contracts, id]);
 
   return (
     <Card className="questions-card">

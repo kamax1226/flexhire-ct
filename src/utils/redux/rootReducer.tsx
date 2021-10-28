@@ -2,8 +2,7 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './slices/auth';
-import collectionReducer from './slices/collection';
-import albumReducer from './slices/album';
+import dashboardReducer from './slices/dashboard';
 
 const rootPersistConfig = {
   key: 'root',
@@ -21,8 +20,7 @@ const authPersistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
-  collection: collectionReducer,
-  album: albumReducer,
+  dashboard: dashboardReducer,
 });
 
 export { rootPersistConfig, rootReducer };

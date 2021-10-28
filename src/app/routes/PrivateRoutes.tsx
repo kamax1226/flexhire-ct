@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Loading from 'app/components/Loading';
-// import { LightDashboardWrapper } from 'app/pages/dashboards/light-dashboard';
 
-export default function PrivateRoutes() {
+// eslint-disable-next-line
+const PrivateRoutes: React.FC = () => {
   const DashboardWrapper = lazy(
     () => import('app/pages/dashboard'),
   );
@@ -38,4 +38,6 @@ export default function PrivateRoutes() {
       </Switch>
     </Suspense>
   );
-}
+};
+
+export default PrivateRoutes;

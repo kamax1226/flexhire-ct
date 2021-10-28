@@ -3,6 +3,7 @@ import { Avatar, Menu, MenuItem } from '@material-ui/core';
 import { useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import useAuth from 'app/hooks/useAuth';
+import logoUrl from '../../assets/images/logo.png';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const Header: React.FC = () => {
       <div className="d-flex align-items-center">
         <div className="logo">
           <Link to="/">
-            <h2>Flexhire</h2>
+            <img className="logo" src={logoUrl} alt="Logo" />
           </Link>
         </div>
         <div className="header-link-items">

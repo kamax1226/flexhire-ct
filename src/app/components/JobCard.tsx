@@ -5,7 +5,7 @@ import { Person, EditLocation } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
 type jobCardProps = {
-    id: number,
+    id: string,
     title: string,
     content: string,
     company: string,

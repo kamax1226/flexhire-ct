@@ -3,7 +3,8 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Login from 'app/pages/auth/Login';
 import Loading from 'app/components/Loading';
 
-export default function PublicRoutes() {
+// eslint-disable-next-line
+const PublicRoutes: React.FC = () => {
   return (
     <Suspense fallback={<Loading />}>
       <Switch>
@@ -12,4 +13,6 @@ export default function PublicRoutes() {
       </Switch>
     </Suspense>
   );
-}
+};
+
+export default PublicRoutes;
