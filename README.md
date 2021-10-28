@@ -6,7 +6,7 @@
 ### Email: karlikboroda@gmail.com
 
 ## Live Demo
-[Flexhire Code Test](https://se-andrei-frontend.herokuapp.com/)
+[Flexhire Code Test](https://flexhire-ct.herokuapp.com/)
 
 ## Description
 
