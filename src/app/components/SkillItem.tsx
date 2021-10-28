@@ -1,12 +1,11 @@
 import React from 'react';
-import '../assests/styles/components/skillItem.css';
 
 type skillItemProps = {
     skill: string,
     exp: number
 }
 
-export default function SkillItem(props: skillItemProps) {
+const SkillItem: React.FC<skillItemProps> = (props: skillItemProps) => {
   const { skill, exp } = props;
 
   return (
@@ -18,4 +17,6 @@ export default function SkillItem(props: skillItemProps) {
       </span>
     </div>
   );
-}
+};
+
+export default SkillItem;

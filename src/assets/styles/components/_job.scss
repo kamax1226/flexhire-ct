@@ -68,7 +68,7 @@
     display: flex;
 }
 
-.job-actions-div p {
+.job-actions-div a {
     margin: 0 15px;
     font-size: 16px;
     font-weight: 500;
@@ -76,6 +76,6 @@
     transition: all 0.2s;
 }
 
-.job-actions-div p:hover {
+.job-actions-div a:hover {
     text-decoration: underline;
 }

@@ -6,13 +6,12 @@ import { Check, RemoveRedEye } from '@material-ui/icons';
 type compensationProps = {
     hourly: number,
     annual: number,
-    availability: string,
     type: string
 }
 
-export default function CompensationCard(props: compensationProps) {
+const CompensationCard: React.FC<compensationProps> = (props: compensationProps) => {
   const {
-    hourly, annual, type, availability,
+    hourly, annual, type,
   } = props;
 
   return (
@@ -57,4 +56,6 @@ export default function CompensationCard(props: compensationProps) {
       </Link>
     </Card>
   );
-}
+};
+
+export default CompensationCard;

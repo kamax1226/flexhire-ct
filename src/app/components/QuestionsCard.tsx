@@ -1,21 +1,20 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Card } from '@material-ui/core';
 import { Error, Comment } from '@material-ui/icons';
 import { useLocation } from 'react-router-dom';
-import { fetchJobs } from 'utils/graphql/fetchGraphql';
 
-export default function QuestionsCard() {
+const QuestionsCard: React.FC = () => {
   const location = useLocation();
   const [jobs, setJobs] = useState<any>();
   const [id, setId] = useState<number>();
 
-  useEffect(() => {
-    fetchJobs().then((response) => {
-      setJobs(response);
-    });
-    const tId: any = new URLSearchParams(location.search).get('id');
-    setId(parseInt(tId, 10));
-  }, [setJobs, setId, location]);
+  // useEffect(() => {
+  //   fetchJobs().then((response) => {
+  //     setJobs(response);
+  //   });
+  //   const tId: any = new URLSearchParams(location.search).get('id');
+  //   setId(parseInt(tId, 10));
+  // }, [setJobs, setId, location]);
 
   const questionsMemo = useMemo(() => jobs && jobs.map((job: any) => {
     if (job.id === id) {
@@ -57,6 +56,7 @@ export default function QuestionsCard() {
           <Error />
           <p>
             Record a brief video introduction describing who you are,
+            {/* eslint-disable-next-line */}
             where you're from, your background, education and work experience
           </p>
 
@@ -66,4 +66,6 @@ export default function QuestionsCard() {
       <p>If you have any questions, you can message Biran from Flexhire.</p>
     </Card>
   );
-}
+};
+
+export default QuestionsCard;

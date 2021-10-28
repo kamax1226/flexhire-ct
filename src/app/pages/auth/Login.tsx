@@ -1,12 +1,10 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Card, Input, Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useAuth from 'app/hooks/useAuth';
 
-export default function Login() {
-  const history = useHistory();
-  const { login, apiKey } = useAuth();
+const Login: React.FC = () => {
+  const { login } = useAuth();
 
   const [key, setKey] = useState<string>('');
 
@@ -16,19 +14,6 @@ export default function Login() {
       setKey(value);
     }
   }, [key]);
-
-  // const getCurrentUser = () => useLazyLoadQuery(
-  //   graphql`
-  //     query LoginQuery {
-  //       currentUser {
-  //         firstName
-  //         lastName
-  //       }
-  //     }
-  //   `, {
-
-  //   },
-  // );
 
   const handleLogin = () => {
     if (key.length > 0) {
@@ -40,17 +25,6 @@ export default function Login() {
     }
   };
 
-  // const handleLogin = useCallback(async () => {
-  //   if (key.length > 0) {
-  //     const result = await login({ apiKey: key });
-  //     console.log(result);
-  //     toast.success('API KEY is valid!');
-  //     getCurrentUser();
-  //   } else {
-  //     toast.error('Fill out all input fields!');
-  //   }
-  // }, [history, key]);
-
   return (
     <div className="login-container">
       <Card className="login-card">
@@ -60,4 +34,6 @@ export default function Login() {
       </Card>
     </div>
   );
-}
+};
+
+export default Login;

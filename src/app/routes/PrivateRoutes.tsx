@@ -8,21 +8,30 @@ export default function PrivateRoutes() {
     () => import('app/pages/dashboard'),
   );
 
+  const JobsWrapper = lazy(
+    () => import('app/pages/jobs'),
+  );
+
+  const ProfileWrapper = lazy(
+    () => import('app/pages/profile'),
+  );
+
+  const QuestionsWrapper = lazy(
+    () => import('app/pages/Questions'),
+  );
+
+  const CodetestWrapper = lazy(
+    () => import('app/pages/CodeTest'),
+  );
+
   return (
     <Suspense fallback={<Loading />}>
       <Switch>
-        <Route path="/dashboard" component={DashboardWrapper} />
-        {/* <Route path="/om" exact component={OrganizationManagement} />
-        <Route path="/om/:id" exact component={DetailPage} />
-        <Route path="/lgu" exact component={LocalGovernmentUnits} />
-        <Route path="/lgu/:id" exact component={VaccinationCenter} />
-
-        <Route path="/start" component={StartDashboardWrapper} />
-        <Route path="/light" component={LightDashboardWrapper} />
-        <Route path="/general" component={GeneralPageWrapper} />
-        <Route path="/profile" component={ProfilePageWrapper} />
-        <Route path="/menu-test" component={MenuTestPage} />
-        <Route path="/docs" component={DocsPageWrapper} /> */}
+        <Route path="/dashboard" exact component={DashboardWrapper} />
+        <Route path="/jobs" exact component={JobsWrapper} />
+        <Route path="/profile" exact component={ProfileWrapper} />
+        <Route path="/questions" exact component={QuestionsWrapper} />
+        <Route path="/codetest" exact component={CodetestWrapper} />
         <Redirect from="/auth" to="/dashboard" />
         <Redirect exact from="/" to="/dashboard" />
         <Redirect to="dashboard" />

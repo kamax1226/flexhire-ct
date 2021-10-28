@@ -1,11 +1,10 @@
 import React from 'react';
-import '../assests/styles/components/subTypeItem.css';
 
 type subTypeItemProps = {
     title: string
 }
 
-export default function SubTypeItem(props: subTypeItemProps) {
+const SubTypeItem: React.FC<subTypeItemProps> = (props: subTypeItemProps) => {
   const { title } = props;
 
   return (
@@ -13,4 +12,6 @@ export default function SubTypeItem(props: subTypeItemProps) {
       <span>{title}</span>
     </div>
   );
-}
+};
+
+export default SubTypeItem;

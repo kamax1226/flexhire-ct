@@ -8,6 +8,7 @@ export type UserRole = "admin" | "client" | "customer_success_rep" | "member" | 
 export type dashboardQueryVariables = {};
 export type dashboardQueryResponse = {
     readonly currentUser: {
+        readonly id: string;
         readonly firstName: string | null;
         readonly lastName: string | null;
         readonly email: string | null;
@@ -18,10 +19,12 @@ export type dashboardQueryResponse = {
         readonly teamInvitationMessage: string | null;
         readonly sendTimesheetReminders: boolean | null;
         readonly profile: {
-            readonly visibility: string | null;
             readonly id: string;
+            readonly freelancerRate: unknown | null;
+            readonly annualCompensation: unknown | null;
+            readonly availability: string | null;
+            readonly availabilityType: ReadonlyArray<string> | null;
         } | null;
-        readonly id: string;
     } | null;
 };
 export type dashboardQuery = {
@@ -34,6 +37,7 @@ export type dashboardQuery = {
 /*
 query dashboardQuery {
   currentUser {
+    id
     firstName
     lastName
     email
@@ -44,10 +48,12 @@ query dashboardQuery {
     teamInvitationMessage
     sendTimesheetReminders
     profile {
-      visibility
       id
+      freelancerRate
+      annualCompensation
+      availability
+      availabilityType
     }
-    id
   }
 }
 */
@@ -69,6 +75,7 @@ v1 = [
     "name": "currentUser",
     "plural": false,
     "selections": [
+      (v0/*: any*/),
       {
         "alias": null,
         "args": null,
@@ -140,18 +147,38 @@ v1 = [
         "name": "profile",
         "plural": false,
         "selections": [
+          (v0/*: any*/),
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "visibility",
+            "name": "freelancerRate",
             "storageKey": null
           },
-          (v0/*: any*/)
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "annualCompensation",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "availability",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "availabilityType",
+            "storageKey": null
+          }
         ],
         "storageKey": null
-      },
-      (v0/*: any*/)
+      }
     ],
     "storageKey": null
   }
@@ -174,14 +201,14 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "e9337ec5e600fec83eff84cf26198f0b",
+    "cacheID": "0e4f6bf8fd2c83a0432a6a0c1a560df4",
     "id": null,
     "metadata": {},
     "name": "dashboardQuery",
     "operationKind": "query",
-    "text": "query dashboardQuery {\n  currentUser {\n    firstName\n    lastName\n    email\n    unconfirmedEmail\n    phone\n    avatarUrl\n    roles\n    teamInvitationMessage\n    sendTimesheetReminders\n    profile {\n      visibility\n      id\n    }\n    id\n  }\n}\n"
+    "text": "query dashboardQuery {\n  currentUser {\n    id\n    firstName\n    lastName\n    email\n    unconfirmedEmail\n    phone\n    avatarUrl\n    roles\n    teamInvitationMessage\n    sendTimesheetReminders\n    profile {\n      id\n      freelancerRate\n      annualCompensation\n      availability\n      availabilityType\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '37c75493e9f84a9d65480318f33de557';
+(node as any).hash = '37c26677860f2c6acfc17ae898291dcd';
 export default node;

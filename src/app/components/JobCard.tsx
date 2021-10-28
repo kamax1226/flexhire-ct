@@ -2,8 +2,7 @@ import React, {
   useState, useCallback, useEffect, useMemo,
 } from 'react';
 import { Person, EditLocation } from '@material-ui/icons';
-import { useHistory } from 'react-router-dom';
-import '../assests/styles/components/jobCard.css';
+import { Link } from 'react-router-dom';
 
 type jobCardProps = {
     id: number,
@@ -13,19 +12,13 @@ type jobCardProps = {
     hiringManager: string
 }
 
-export default function JobCard(props: jobCardProps) {
-  const history = useHistory();
-
+const JobCard: React.FC<jobCardProps> = (props: jobCardProps) => {
   const {
     id, title, content, company, hiringManager,
   } = props;
 
   const [contentText, setContentText] = useState<string>();
   const [more, setMore] = useState<boolean>(true);
-
-  const handleRoute = useCallback((path: string) => {
-    history.push(path);
-  }, [history]);
 
   const handleMoreContent = useCallback(() => {
     setMore(!more);
@@ -37,11 +30,13 @@ export default function JobCard(props: jobCardProps) {
     }
   }, [more, content, setContentText]);
 
-  const moreBtnMemo = useMemo(() => {
-    if (content.length > 800) {
-      return more ? <span onClick={handleMoreContent} className="more-btn">More</span> : <span onClick={handleMoreContent} className="more-btn">Less</span>;
-    }
-  }, [content, handleMoreContent, more]);
+  const moreBtnMemo = useMemo(() => ((more && content.length > 800) ? (
+    // eslint-disable-next-line
+    <span onClick={handleMoreContent} className="more-btn">More</span>
+  ) : (
+    // eslint-disable-next-line
+    <span onClick={handleMoreContent} className="more-btn">Less</span>
+  )), [content, handleMoreContent, more]);
 
   useEffect(() => {
     if (content.length > 800) {
@@ -75,10 +70,12 @@ export default function JobCard(props: jobCardProps) {
           )}
         </div>
         <div className="job-actions-div">
-          <p onClick={() => handleRoute(`/questions?id=${id}`)}>Questions</p>
-          <p onClick={() => handleRoute(`/codetest?id=${id}`)}>Code test</p>
+          <Link to={`/questions?id=${id}`}>Questions</Link>
+          <Link to={`/codetest?id=${id}`}>Code Test</Link>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default JobCard;

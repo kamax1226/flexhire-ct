@@ -1,15 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { login, logout } from 'utils/redux/slices/authJwt';
+import { login, logout } from 'utils/redux/slices/auth';
 import { IRootState } from 'utils/redux/store';
 import { ILogin } from 'utils/types';
 
-export default function useAuth() {
+const useAuth = () => {
   const dispatch = useDispatch();
 
   const {
     isLoading, isAuthenticated, apiKey,
   } = useSelector(
-    (state: IRootState) => state.authJwt,
+    (state: IRootState) => state.auth,
   );
 
   return {
@@ -25,4 +25,6 @@ export default function useAuth() {
 
     logout: () => dispatch(logout()),
   };
-}
+};
+
+export default useAuth;

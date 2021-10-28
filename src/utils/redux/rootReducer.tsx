@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import authJwtReducer from './slices/authJwt';
+import authReducer from './slices/auth';
 import collectionReducer from './slices/collection';
 import albumReducer from './slices/album';
 
@@ -13,14 +13,14 @@ const rootPersistConfig = {
 };
 
 const authPersistConfig = {
-  key: 'authJwt',
+  key: 'auth',
   storage,
   keyPrefix: 'redux-',
   whitelist: ['isAuthenticated', 'apiKey'],
 };
 
 const rootReducer = combineReducers({
-  authJwt: persistReducer(authPersistConfig, authJwtReducer),
+  auth: persistReducer(authPersistConfig, authReducer),
   collection: collectionReducer,
   album: albumReducer,
 });

@@ -1,9 +1,13 @@
 import React, { useState, useCallback } from 'react';
 import { Avatar, Menu, MenuItem } from '@material-ui/core';
 import { useHistory, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import useAuth from 'app/hooks/useAuth';
 
-export default function Header() {
+const Header: React.FC = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
+  const { logout } = useAuth();
 
   const [menu, setMenu] = useState(null);
 
@@ -19,6 +23,10 @@ export default function Header() {
     history.push(path);
   }, [history]);
 
+  const handleLogout = () => {
+    dispatch(logout);
+  };
+
   return (
     <div className="header-container">
       <div className="d-flex align-items-center">
@@ -28,9 +36,9 @@ export default function Header() {
           </Link>
         </div>
         <div className="header-link-items">
-          {/* <p onClick={() => handleRoute('/')}>Dashboard</p>
-          <p onClick={() => handleRoute('/jobs')}>Jobs</p>
-          <p onClick={() => handleRoute('/profile')}>Profile</p> */}
+          <Link to="/">Dashboard</Link>
+          <Link to="/jobs">Jobs</Link>
+          <Link to="/profile">Profile</Link>
         </div>
       </div>
       <div>
@@ -44,9 +52,11 @@ export default function Header() {
         >
           <MenuItem onClick={() => handleRoute('/Jobs')}>Jobs</MenuItem>
           <MenuItem onClick={() => handleRoute('/profile')}>Profile</MenuItem>
-          <MenuItem onClick={() => handleRoute('/login')}>Logout</MenuItem>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       </div>
     </div>
   );
-}
+};
+
+export default Header;
