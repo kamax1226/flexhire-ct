@@ -87,7 +87,9 @@ const Dashboard: React.FC = () => {
           }
           timezone
         }
-        contracts {
+        contracts (
+          first: 5
+        ) {
           nodes {
             client {
               id

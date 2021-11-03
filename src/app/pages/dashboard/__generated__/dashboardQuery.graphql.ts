@@ -89,7 +89,7 @@ query dashboardQuery {
     }
     timezone
   }
-  contracts {
+  contracts(first: 5) {
     nodes {
       client {
         id
@@ -236,21 +236,28 @@ v9 = {
   "name": "timezone",
   "storageKey": null
 },
-v10 = {
+v10 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 5
+  }
+],
+v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "title",
   "storageKey": null
 },
-v11 = {
+v12 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "description",
   "storageKey": null
 },
-v12 = {
+v13 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -296,7 +303,7 @@ return {
       },
       {
         "alias": null,
-        "args": null,
+        "args": (v10/*: any*/),
         "concreteType": "ContractConnection",
         "kind": "LinkedField",
         "name": "contracts",
@@ -344,8 +351,8 @@ return {
                 "plural": false,
                 "selections": [
                   (v0/*: any*/),
-                  (v10/*: any*/),
                   (v11/*: any*/),
+                  (v12/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -354,7 +361,7 @@ return {
                     "name": "questions",
                     "plural": true,
                     "selections": [
-                      (v10/*: any*/)
+                      (v11/*: any*/)
                     ],
                     "storageKey": null
                   }
@@ -364,9 +371,9 @@ return {
             ],
             "storageKey": null
           },
-          (v12/*: any*/)
+          (v13/*: any*/)
         ],
-        "storageKey": null
+        "storageKey": "contracts(first:5)"
       }
     ],
     "type": "Query",
@@ -411,7 +418,7 @@ return {
       },
       {
         "alias": null,
-        "args": null,
+        "args": (v10/*: any*/),
         "concreteType": "ContractConnection",
         "kind": "LinkedField",
         "name": "contracts",
@@ -460,8 +467,8 @@ return {
                 "plural": false,
                 "selections": [
                   (v0/*: any*/),
-                  (v10/*: any*/),
                   (v11/*: any*/),
+                  (v12/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -470,7 +477,7 @@ return {
                     "name": "questions",
                     "plural": true,
                     "selections": [
-                      (v10/*: any*/),
+                      (v11/*: any*/),
                       (v0/*: any*/)
                     ],
                     "storageKey": null
@@ -482,21 +489,21 @@ return {
             ],
             "storageKey": null
           },
-          (v12/*: any*/)
+          (v13/*: any*/)
         ],
-        "storageKey": null
+        "storageKey": "contracts(first:5)"
       }
     ]
   },
   "params": {
-    "cacheID": "d4eb7de4204b24a8144a8ca81ccfd480",
+    "cacheID": "ff7489c262604897e2e85fc4cf51a69f",
     "id": null,
     "metadata": {},
     "name": "dashboardQuery",
     "operationKind": "query",
-    "text": "query dashboardQuery {\n  currentUser {\n    id\n    firstName\n    lastName\n    avatarUrl\n    profile {\n      id\n      freelancerRate\n      annualCompensation\n      availabilityType\n      freelancerType {\n        id\n        name\n      }\n      totalExperience\n      textIntroduction\n    }\n    userSkills {\n      experience\n      skill {\n        id\n        name\n      }\n      id\n    }\n    timezone\n  }\n  contracts {\n    nodes {\n      client {\n        id\n        firstName\n        firm {\n          name\n          id\n        }\n      }\n      job {\n        id\n        title\n        description\n        questions {\n          title\n          id\n        }\n      }\n      id\n    }\n    totalCount\n  }\n}\n"
+    "text": "query dashboardQuery {\n  currentUser {\n    id\n    firstName\n    lastName\n    avatarUrl\n    profile {\n      id\n      freelancerRate\n      annualCompensation\n      availabilityType\n      freelancerType {\n        id\n        name\n      }\n      totalExperience\n      textIntroduction\n    }\n    userSkills {\n      experience\n      skill {\n        id\n        name\n      }\n      id\n    }\n    timezone\n  }\n  contracts(first: 5) {\n    nodes {\n      client {\n        id\n        firstName\n        firm {\n          name\n          id\n        }\n      }\n      job {\n        id\n        title\n        description\n        questions {\n          title\n          id\n        }\n      }\n      id\n    }\n    totalCount\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'ebfdc52cda5b25e0ce71acfa96682b27';
+(node as any).hash = '26d5e26bdee097435ac39d55f3b0b543';
 export default node;
